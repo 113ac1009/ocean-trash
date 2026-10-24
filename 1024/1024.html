@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Dashboard ECharts Demo</title>
+    <!-- 引入 ECharts 文件 -->
+    <script src="echarts.js"></script>
+    <style>
+        body {
+            background-color: #121212;
+        }
+
+        /* 基礎樣式修飾：確保卡片有高度，圖表才能正常撐開 */
+        .card {
+            width: 100%;
+            height: 400px;
+            /* 必須給予高度，否則 ECharts 圖表會看不見 */
+            background-color: #eeeeee;
+            border: 1px solid #4a4a4a;
+            border-radius: 8px;
+            margin-bottom: 5px;
+        }
+
+        .row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .col-1-2 {
+            flex: 1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 1. 將容器結構貼在 body 裡面 -->
+    <div class="hero">
+        <div class="container">
+
+            <!-- Cmpt 3 -->
+            <div class="cmpt-3">
+                <div class="row">
+                    <div class="col-1-2">
+                        <div style="padding: 1px; color: #ffffff;">
+                            <h2 style="font-size: 24px; font-weight: bold; margin-bottom: 5px; margin-top: 5px; color: #4ba3e3;">
+                                🌊 115年六都海洋廢棄物清理現況與分析
+                            </h2>
+                            <p style="font-size: 15px; line-height: 1.7; color: #e0e0e0; margin-bottom: 10px;">
+                                本年度針對共計 <strong>129 處</strong> 海岸線進行清理，總計清除約 <strong>490 公噸</strong>
+                                海洋廢棄物。透過整合清理動能、來源、種類及最終處置數據，得出以下推論：
+                            </p>
+
+                            <ul
+                                style="font-size: 14px; line-height: 1.8; margin-top: 10px; padding-left: 20px; color: #cccccc;">
+                                <li><strong
+                                        style="color: #ffffff;">參與動能：</strong>台中市與新北市在清理參與人次表現最為踴躍，顯示該地區具備良好民間環保意識與地方政府動員能力，能有效組織大規模淨灘活動。
+                                </li>
+                                <li><strong
+                                        style="color: #ffffff;">來源解析：</strong>廢棄物高度集中於「海漂」與「船隻人員產出」。海廢不單是陸地垃圾外流，更深受洋流帶來境外垃圾，以及近海航運、漁業活動棄置影響，凸顯海上管制的必要性。
+                                </li>
+                                <li><strong
+                                        style="color: #ffffff;">物種與裂解問題：</strong>可分類項目以「竹木」為大宗（受天災漂流木及沿海養殖業影響），其次為廢漁具與寶特瓶。然而，仍有高達
+                                    <strong>三百多噸廢棄物無法分類</strong>，反映出海廢經長年海水浸泡與日照後已嚴重脆化、碎裂，導致材質難以辨識。</li>
+                                <li><strong style="color: #ffffff;">處置方式的困境：</strong>高達 <strong>89.8%
+                                        的海廢最終仰賴「焚化」</strong>處理，極少數能回收再利用或掩埋。印證海洋廢棄物因環境質變，資源回收成本高且利用價值極低。
+                                </li>
+                            </ul>
+
+                            <div
+                                style="margin-top: 5px; padding: 10px; background-color: rgba(75, 163, 227, 0.1); border-left: 4px solid #4ba3e3; border-radius: 4px;">
+                                <!--<strong style="color: #4ba3e3; font-size: 16px;">總結：</strong><br>-->
+                                <span style="font-size: 14px; color: #e0e0e0; line-height: 1.7;">
+                                    終端淨灘與高比例焚化處理雖能短暫恢復海岸環境，但處理成本龐大且缺乏再利用效益。面對大量海廢，海洋保育須從末端清理轉向源頭減量才能從根本減緩台灣海岸線的環境壓力。
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-1-2">
+                        <div class="card" id="chart1"></div>
+                        <p> </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cmpt-4">
+                <div class="row">
+                    <div class="col-1-2">
+                        <!-- 把 id="chart1" 放在第一個卡片裡面 -->
+                        <div class="card" id="chart2"></div>
+                    </div>
+                    <div class="col-1-2">
+                        <div class="card" id="chart3"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script type="text/javascript">
+
+        var chart1 = echarts.init(document.getElementById('chart1'));
+
+        var option1 = {
+            title: {
+                text: '六都海洋廢棄物清理參與人次'
+            },
+            tooltip: {},
+            legend: {
+                data: ['人數']
+            },
+            xAxis: {
+                data: ['新北市', '桃園市', '台中市', '台南市', '高雄市']
+            },
+            yAxis: {},
+            series: [
+                {
+                    name: '人次',
+                    type: 'bar',
+                    itemStyle: {
+                        color: '#278EF5'
+                    },
+                    data: [1415, 329, 1729, 1214, 299]
+                }
+            ]
+        };
+
+        chart1.setOption(option1);
+
+
+        var chart2 = echarts.init(document.getElementById('chart2'));
+
+        var option2 = {
+            title: {
+                text: '海洋廢棄物來源',
+                subtext: '(公噸)',
+                left: 'center'
+            },
+            tooltip: {
+                trigger: 'item'
+            },
+            legend: {
+                orient: 'vertical',
+                left: 'left'
+            },
+            series: [
+                {
+                    name: '來源',
+                    type: 'pie',
+                    radius: '50%',
+                    data: [
+                        { value: 229, name: '海漂', itemStyle: { color: '#BBDBFC' } },
+                        { value: 0.5, name: '海底', itemStyle: { color: '#8FC4FA' } },
+                        { value: 60, name: '淨灘', itemStyle: { color: '#63ADF8' } },
+                        { value: 158, name: '船隻', itemStyle: { color: '#278EF5' } },
+                        { value: 42, name: '垃圾桶', itemStyle: { color: '#0B80F4' } }
+                    ],
+                    emphasis: {
+                        itemStyle: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+
+        chart2.setOption(option2);
+
+        var chart3 = echarts.init(document.getElementById('chart3'));
+
+        var option3 = {
+            title: {
+                text: '可分類海洋廢棄物種類',
+                subtext: '(公噸)',
+                left: 'center',
+                top: '10px'
+            },
+            tooltip: {
+                trigger: 'item'
+            },
+            legend: {
+                bottom: '15px',      // 改將圖例放在最下方
+                left: 'center',       // 圖例水平居中
+                orient: 'horizontal' // 橫向排列
+            },
+            series: [
+                {
+                    name: '海洋廢棄物種類',
+                    type: 'pie',
+                    radius: ['25%', '85%'],  // 稍微加大半徑，讓圖表更清晰
+                    center: ['50%', '75%'],  // 將圓心往下拉（Y軸65%），半圓就會剛好落在正中間
+                    startAngle: 180,
+                    endAngle: 360,
+                    data: [
+                        { value: 67.7, name: '竹木', itemStyle: { color: '#BBDBFC' } },
+                        { value: 8.5, name: '廢漁具漁網', itemStyle: { color: '#8FC4FA' } },
+                        { value: 8.5, name: '寶特瓶', itemStyle: { color: '#63ADF8' } },
+                        { value: 7.2, name: '廢紙', itemStyle: { color: '#278EF5' } },
+                        { value: 5.9, name: '玻璃瓶', itemStyle: { color: '#0B80F4' } },
+                        { value: 5, name: '鐵鋁罐', itemStyle: { color: '#0969C8' } },
+                        { value: 2.4, name: '保麗龍', itemStyle: { color: '#07529C' } }
+                    ]
+                }
+            ]
+        };
+
+        chart3.setOption(option3);
+
+
+        // ==================== 視窗縮放自動適應 ====================
+        window.addEventListener('resize', function () {
+            chart1.resize();
+            chart2.resize();
+            chart3.resize();
+        });
+    </script>
+</body>
+
+</html>
